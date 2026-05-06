@@ -13,3 +13,5 @@ Imports:
     flextable,
     dplyr,
     tibble
+URL: https://github.com/YaliZhang98/myRtools
+BugReports: https://github.com/YaliZhang98/myRtools/issues
