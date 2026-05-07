@@ -20,10 +20,10 @@ Export GEE model summaries to a formatted Word document
 \examples{
 \dontrun{
 # Single model
-gee_to_docx(my_model)
+format_gee_to_docx(my_model)
 
 # Multiple models
 models <- list("Model 1" = gee1, "Model 2" = gee2)
-gee_to_docx(models, filename = "results.docx")
+format_gee_to_docx(models, filename = "results.docx")
 }
 }
