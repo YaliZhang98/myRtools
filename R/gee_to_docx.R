@@ -33,8 +33,8 @@ gee_to_docx <- function(models, filename = "GEE_summaries.docx") {
     s           <- summary(model)
     full_output <- capture.output(print(s))
     
-    coef_df <- as.data.frame(s$coefficients) %>%
-      tibble::rownames_to_column(var = "Term") %>%
+    coef_df <- as.data.frame(s$coefficients) |>
+      tibble::rownames_to_column(var = "Term") |>
       dplyr::mutate(
         Stars = dplyr::case_when(
           `Pr(>|W|)` < 0.001 ~ "***",
@@ -54,20 +54,20 @@ gee_to_docx <- function(models, filename = "GEE_summaries.docx") {
     
     mono_style <- officer::fp_text(font.family = "Courier New", font.size = 9)
     
-    ft <- flextable::flextable(coef_df) %>%
-      flextable::font(fontname = "Courier New", part = "all") %>%
-      flextable::fontsize(size = 9, part = "all") %>%
-      flextable::bold(j = "Stars") %>%
-      flextable::bg(~ Stars %in% c("***", "**", "*"), bg = "#EEEEEE") %>%
-      flextable::set_header_labels(Stars = "Sig.") %>%
-      flextable::align(j = -1, align = "right", part = "all") %>%
-      flextable::align(j = 1,  align = "left",  part = "all") %>%
-      flextable::border_remove() %>%
-      flextable::hline_top(part = "header", border = officer::fp_border(width = 1)) %>%
-      flextable::hline_bottom(part = "header", border = officer::fp_border(width = 1)) %>%
-      flextable::hline_bottom(part = "body",   border = officer::fp_border(width = 1)) %>%
+    ft <- flextable::flextable(coef_df) |>
+      flextable::font(fontname = "Courier New", part = "all") |>
+      flextable::fontsize(size = 9, part = "all") |>
+      flextable::bold(j = "Stars") |>
+      flextable::bg(~ Stars %in% c("***", "**", "*"), bg = "#EEEEEE") |>
+      flextable::set_header_labels(Stars = "Sig.") |>
+      flextable::align(j = -1, align = "right", part = "all") |>
+      flextable::align(j = 1,  align = "left",  part = "all") |>
+      flextable::border_remove() |>
+      flextable::hline_top(part = "header", border = officer::fp_border(width = 1)) |>
+      flextable::hline_bottom(part = "header", border = officer::fp_border(width = 1)) |>
+      flextable::hline_bottom(part = "body",   border = officer::fp_border(width = 1)) |>
       flextable::padding(padding.top = 1, padding.bottom = 1,
-                         padding.left = 3, padding.right = 3, part = "all") %>%
+                         padding.left = 3, padding.right = 3, part = "all") |>
       flextable::autofit()
     
     coef_start        <- grep("^\\s*Coefficients:", full_output)
@@ -76,20 +76,20 @@ gee_to_docx <- function(models, filename = "GEE_summaries.docx") {
     coef_header_lines <- full_output[coef_start:(coef_start + 1)]
     footer_lines      <- full_output[coef_end:length(full_output)]
     
-    doc <- doc %>%
+    doc <- doc |>
       officer::body_add_par(model_name, style = "heading 1")
     
     for (line in c(header_lines, coef_header_lines)) {
-      doc <- doc %>%
+      doc <- doc |>
         officer::body_add_fpar(officer::fpar(officer::ftext(line, prop = mono_style)))
     }
     
-    doc <- doc %>%
-      officer::body_add_flextable(ft) %>%
+    doc <- doc |>
+      officer::body_add_flextable(ft) |>
       officer::body_add_par("")
     
     for (line in footer_lines) {
-      doc <- doc %>%
+      doc <- doc |>
         officer::body_add_fpar(officer::fpar(officer::ftext(line, prop = mono_style)))
     }
     
@@ -100,7 +100,7 @@ gee_to_docx <- function(models, filename = "GEE_summaries.docx") {
   
   for (i in seq_along(models)) {
     doc <- .format_one(models[[i]], names(models)[i], doc)
-    if (i < length(models)) doc <- doc %>% officer::body_add_break()
+    if (i < length(models)) doc <- doc |> officer::body_add_break()
   }
   
   out_path <- file.path(getwd(), filename)
