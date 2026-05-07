@@ -19,7 +19,7 @@
 #' models <- list("Model 1" = gee1, "Model 2" = gee2)
 #' format_gee_to_docx(models, filename = "results.docx")
 
-format_gee_to_docx <- function(models, filename = "GEE_summaries.docx") {
+gee_to_docx <- function(models, filename = "GEE_summaries.docx") {
   
   if (!is.list(models) || inherits(models, "geeglm")) {
     models <- list("Model" = models)
