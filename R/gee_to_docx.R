@@ -4,11 +4,11 @@
 #' @param filename Output filename (default: "GEE_summaries.docx")
 #'
 #' @return Invisibly returns the output file path
-#' @importFrom officer read_docx body_add_par body_add_fpar body_add_break body_add_flextable fp_text fp_border fpar ftext
-#' @importFrom flextable flextable font fontsize bold bg set_header_labels align border_remove hline_top hline_bottom padding autofit
+#' @importFrom officer read_docx body_add_par body_add_fpar body_add_break fp_text fp_border fpar ftext
+#' @importFrom flextable flextable font fontsize bold bg set_header_labels align border_remove hline_top hline_bottom padding autofit body_add_flextable
 #' @importFrom dplyr mutate case_when
 #' @importFrom tibble rownames_to_column
-#' @importFrom geepack
+#' @importFrom geepack summary.geeglm
 #' @export
 #'
 #' @examples
