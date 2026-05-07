@@ -8,6 +8,7 @@
 #' @importFrom flextable flextable font fontsize bold bg set_header_labels align border_remove hline_top hline_bottom padding autofit body_add_flextable
 #' @importFrom dplyr mutate case_when
 #' @importFrom tibble rownames_to_column
+#' @importFrom geepack
 #' @export
 #'
 #' @examples
