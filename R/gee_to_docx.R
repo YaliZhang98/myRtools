@@ -87,7 +87,7 @@ gee_to_docx <- function(models, filename = "GEE_summaries.docx") {
     }
 
     doc <- doc |>
-      officer::body_add_flextable(ft) |>
+      flextable::body_add_flextable(ft) |>
       officer::body_add_par("")
 
     for (line in footer_lines) {
