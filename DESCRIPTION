@@ -12,6 +12,7 @@ Imports:
     officer,
     flextable,
     dplyr,
-    tibble
+    tibble,
+    geepack
 URL: https://github.com/YaliZhang98/myRtools
 BugReports: https://github.com/YaliZhang98/myRtools/issues
