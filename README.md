@@ -3,7 +3,7 @@
 gee_to_docx()
 Print summary(geeglm_model) output to docs file
 
-library(myRtools)
+`library(myRtools)`
 - Single model \
 `format_gee_to_docx(my_model)`
 
